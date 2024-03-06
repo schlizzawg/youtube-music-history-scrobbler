@@ -22,7 +22,7 @@ const initData = function () {
         if (rawArtist.includes(" - Topic")) {
           const artist = rawArtist.slice(0, -8);
           const title = i.title.slice(8);
-          const songId = i.titleUrl.slice(32);
+          const songId = i.titleUrl.split('v=')[1];
           // Long thing but it just takes the little sections of the text for month, day, and year and reorders them
           // const time = `${i.time.slice(5, 7)}/${i.time.slice(
           //   8,
