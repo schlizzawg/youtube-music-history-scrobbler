@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "youtube-music-api": "^1.0.6"
+    "youtube-music-api": "github:emresenyuva/youtube-music-api#5ad9f30885da385e07d29dd129ad2961fa10910f"
   }
 }
