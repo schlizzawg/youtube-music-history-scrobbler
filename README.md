@@ -16,6 +16,8 @@ This should give you a folder with lots of data, but the file we are looking for
 While you are waiting, download or clone this github repo and unzip it.
 All of the dependencies and other files come with it, so there is no installation.
 
+Run `npm install`
+
 Take the **watch-history.json** file and drag it into the youtube-music-history-scrobbler directory,
 then, simply run **Start.bat** (or run node index.js in a terminal).
 
