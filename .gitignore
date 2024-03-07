@@ -8,3 +8,4 @@ formatted-5.json
 meta-img.png
 /site/*
 node_modules
+.DS_Store
