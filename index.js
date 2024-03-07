@@ -73,9 +73,12 @@ const batchAPI = function (index) {
       if (i >= lastIndex && i <= index) {
         const id = d.id;
         if (id) {
-          api.search(id).then((result) => {
-            callback(result, i);
-          });
+          const attempt = () => {
+              api.search(id)
+		.then(result => callback(result, i))
+		.catch(attempt)
+          }
+          attempt();
         }
       }
     });
