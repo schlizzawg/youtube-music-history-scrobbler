@@ -11,8 +11,8 @@ let finishedArr = [];
 
 console.log("Filtering initial file for only YouTube Music results");
 //Parsing the JSON for all the data it has
-const initData = function () {
-  for (let i of parsedData) {
+const initData = function() {
+  for (const i of parsedData) {
     if (i.header === "YouTube Music") {
       let newObj = {};
       const rawArtist = JSON.stringify(i.subtitles)
@@ -64,19 +64,22 @@ let successfullAPIs = 0;
 let finishCalled = false;
 
 // The api errored every time around ~1900, so I'm batching it in sets of 1000 to prevent that
-const batchAPI = function (index) {
+const batchAPI = function(index) {
   // Have to store index outside to prevent double-calling this in the callback loop
   curIndex = index;
-  console.log("\x1b[0m", `Api Querying items ${lastIndex} to ${curIndex}`);
+  console.log(
+    "\x1b[0m",
+    `Api Querying items ${lastIndex} to ${curIndex}`
+  );
   api.initalize().then((info) => {
     finishedArr.map((d, i) => {
       if (i >= lastIndex && i <= index) {
         const id = d.id;
         if (id) {
           const attempt = () => {
-              api.search(id)
-		.then(result => callback(result, i))
-		.catch(attempt)
+            api.search(id)
+              .then(result => callback(result, i))
+              .catch(attempt);
           }
           attempt();
         }
@@ -98,9 +101,8 @@ function callback(result, i) {
       lastIndex = curIndex;
       batchAPI(curIndex + 1000);
     }
-    if (callbackCount + 10 > finishedArr.length) {
+    if (callbackCount + 10 > finishedArr.length)
       !finishCalled && finish();
-    }
   }
 }
 
@@ -118,9 +120,8 @@ function finish() {
     "Waiting 5 seconds for last requests to pour in before writing to file"
   );
   setTimeout(() => {
-    for (let i of finishedArr) {
+    for (const i of finishedArr)
       delete i.id;
-    }
     if (finishedArr.length < 2800) {
       fs.writeFile(
         "formatted.json",
